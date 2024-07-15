@@ -1,0 +1,111 @@
+{% extends "index.html" %}
+
+{% block header %}
+
+{% if user.is_authenticated %}
+<h3> Olá, {{user.first_name}} {{user.last_name}}</h3>
+<button type="button" class="btn btn-primary px-5 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Editar Perfil
+</button>
+<a class="btn btn-primary px-5 py-2" href="{% url 'logout' %}">Logout</a>
+
+
+{% else %}
+
+<button type="button" class="btn btn-primary px-5 py-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+    Login
+</button>
+<button type="button" class="btn btn-primary px-5 py-2" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+    Cadastro
+</button>
+
+{% endif %}
+
+{% endblock header %}
+
+
+
+
+
+{% block main %}
+
+{% if user.is_authenticated %}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Perfil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{% url 'editar_perfil' %}" class="d-flex flex-column align-content-around m-2 gap-2">
+            {% csrf_token %}
+            <p>Nome de Usuário: {{ form.username }}</p>    
+            <p>Senha: {{ form.password }}</p>
+            <p>Nome: {{ form.first_name }}</p>
+            <p>Sobrenome: {{ form.last_name }}</p>
+            <p>Email: {{ form.email }}</p>
+            <div class="d-flex justify-content-around">
+                <button type="submit" class="btn btn-primary px-5 py-2">Editar Perfil</button>
+                <a class="btn btn-danger px-5 py-2" href="{% url 'logout' %}">Deslogar</a>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form method="post" action="{% url 'login' %}" class="d-flex flex-column align-content-around m-2 gap-2"> 
+            {% csrf_token %}
+            <p>Nome de Usuário: {{ form.username }}</p>    
+            <p>Senha: {{ form.password }}</p>
+            <button type="submit" class="btn btn-primary px-5 py-2">Logar</button>
+            <a type="button" class="btn btn-secondary px-5 py-2" data-bs-dismiss="modal">Esqueci minha senha</a>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="cadastroModalLabel">Cadastro</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{% url 'cadastro' %}" class="d-flex flex-column align-content-around m-2 gap-2"> 
+                {% csrf_token %}
+                <p>Nome de Usuário: {{ form.username }}</p>    
+                <p>Senha: {{ form.password }}</p>
+                <p>Nome: {{ form.first_name }}</p>
+                <p>Sobrenome: {{ form.last_name }}</p>
+                <p>Email: {{ form.email }}</p>
+                <button type="submit" class="btn btn-primary px-5 py-2">Cria Conta</button>
+            </form>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock main %}
