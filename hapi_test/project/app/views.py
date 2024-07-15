@@ -52,5 +52,4 @@ def editar_perfil(request):
         form = FormUsuario(instance=usuario,data=novo_usuario)
         if form.is_valid:
             form.save()
-
     return HttpResponseRedirect(reverse('home'))
