@@ -1,0 +1,56 @@
+<div class="container">
+  <h2>Editar Usuário</h2>
+  <form [formGroup]="formUsuario" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Nome de Usuário</mat-label>
+        <input matInput id="username" formControlName="username">
+        <mat-error *ngIf="formUsuario.get('username')?.invalid && formUsuario.get('username')?.touched">
+          Nome de usuário é obrigatório
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" id="password" formControlName="password">
+        <mat-error *ngIf="formUsuario.get('password')?.invalid && formUsuario.get('password')?.touched">
+          Senha é obrigatória
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Primeiro Nome</mat-label>
+        <input matInput id="first_name" formControlName="first_name">
+        <mat-error *ngIf="formUsuario.get('first_name')?.invalid && formUsuario.get('first_name')?.touched">
+          Primeiro nome é obrigatório
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Sobrenome</mat-label>
+        <input matInput id="last_name" formControlName="last_name">
+        <mat-error *ngIf="formUsuario.get('last_name')?.invalid && formUsuario.get('last_name')?.touched">
+          Sobrenome é obrigatório
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput id="email" type="email" formControlName="email">
+        <mat-error *ngIf="formUsuario.get('email')?.invalid && formUsuario.get('email')?.touched">
+          Email é obrigatório e deve ser válido
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <button mat-raised-button color="primary" type="submit" [disabled]="formUsuario.invalid">Editar</button>
+  </form>
+</div>

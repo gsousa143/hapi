@@ -7,7 +7,6 @@ from django.contrib.auth.hashers import make_password
 from .models import *
 from .forms import *
 
-# Create your views here.
 def home(request):
     if  request.user.is_authenticated:
         form = FormUsuario(instance=request.user)
@@ -19,10 +18,10 @@ def home(request):
 
 def login (request):
     if request.method == "POST":
-        user = authenticate(username=request.POST.get('username'),
+        usuario = authenticate(username=request.POST.get('username'),
                             password=request.POST.get('password'))
-        if user:
-            auth_login(request,user)
+        if usuario:
+            auth_login(request,usuario)
     return HttpResponseRedirect(reverse('home'))
 
 def logout (request):
@@ -51,5 +50,7 @@ def editar_perfil(request):
         novo_usuario["password"] = usuario.password
         form = FormUsuario(instance=usuario,data=novo_usuario)
         if form.is_valid:
+            form = form.save(commit=False)
+            form.password = make_password(form.password)
             form.save()
     return HttpResponseRedirect(reverse('home'))

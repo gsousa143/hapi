@@ -1,0 +1,19 @@
+<h2>Usuários</h2>
+<div *ngFor="let usuario of usuarios" class="usuario-container">
+  <mat-card>
+    <mat-card-header>
+        <strong>Nome: </strong> {{usuario.first_name}} {{usuario.last_name}}
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li><strong>Id:</strong> {{usuario.id}}</li>
+        <li><strong>Nome de Usuario:</strong> {{usuario.username}}</li>
+        <li><strong>E-mail:</strong> {{usuario.email}}</li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button class="edit-btn" [routerLink]="['/usuario', usuario.id]">Editar Usuário</a>
+      <a class="delete-btn" mat-button href="#" (click)="delete_usuario(usuario.id)">Deletar Usuário</a>
+    </mat-card-actions>
+  </mat-card>
+</div>
