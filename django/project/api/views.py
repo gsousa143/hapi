@@ -5,8 +5,10 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth.hashers import make_password
+
+
 
 from .serializers import *
 # Create your views here.
@@ -80,5 +82,15 @@ class get_put_delete_usuario(APIView):
         #    return Response(status=status.HTTP_401_UNAUTHORIZED)
         usuario.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+class get_permissoes(APIView):
+    def get(self, request):
+        #Metodo Get
+        #if not request.user.is_authenticated:
+        #    return Response(status=status.HTTP_401_UNAUTHORIZED)
+        permissoes = Permission.objects.all()
+        serializer = permissoes_serializer(permissoes, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
 

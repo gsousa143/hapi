@@ -1,0 +1,49 @@
+<div class="card-conteiner">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Lista de Usuários
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="usuarios" class="mat-table">
+    
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef >Id</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.id }}</td>
+          </ng-container>
+    
+    
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef>Nome de Usuário</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.username }}</td>
+          </ng-container>
+    
+    
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.email }}</td>
+          </ng-container>
+    
+    
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let usuario">{{ usuario.first_name + " " + usuario.last_name}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let usuario">
+              <a mat-button [routerLink]="['/view_usuario', usuario.id]"><mat-icon aria-hidden="false" aria-label="Vizualizar" fontIcon="visibility"></mat-icon></a>
+              <a mat-button [routerLink]="['/edit_usuario', usuario.id]"><mat-icon aria-hidden="false" aria-label="Modificar" fontIcon="edit"></mat-icon></a>
+              <a mat-button [routerLink]="['/list_usuario']" (click)="deleteUsuario(usuario.id)"><mat-icon aria-hidden="false" aria-label="Excluir" fontIcon="delete"></mat-icon></a>
+            </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+</div>
+    

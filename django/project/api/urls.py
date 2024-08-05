@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path("usuario/",views.get_post_usuario.as_view()),
-    path("usuario/<id>",views.get_put_delete_usuario.as_view())
+    path("usuario/<id>",views.get_put_delete_usuario.as_view()),
+    path("permissao/",views.get_permissoes.as_view())
 ]

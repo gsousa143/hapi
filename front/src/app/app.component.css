@@ -1,0 +1,8 @@
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidenav-container{
+    height: 100vh;
+}

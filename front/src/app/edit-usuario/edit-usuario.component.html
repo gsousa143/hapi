@@ -1,0 +1,73 @@
+<div class="card-conteiner">
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Editar Usuário
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="formUsuario" (ngSubmit)="onSubmit()" class="form-container">
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome de Usuário</mat-label>
+          <input matInput id="username" formControlName="username">
+          <mat-error *ngIf="formUsuario.get('username')?.invalid && formUsuario.get('username')?.touched">
+            Nome de usuário é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+      
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Primeiro Nome</mat-label>
+          <input matInput id="first_name" formControlName="first_name">
+          <mat-error *ngIf="formUsuario.get('first_name')?.invalid && formUsuario.get('first_name')?.touched">
+            Primeiro nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Sobrenome</mat-label>
+          <input matInput id="last_name" formControlName="last_name">
+          <mat-error *ngIf="formUsuario.get('last_name')?.invalid && formUsuario.get('last_name')?.touched">
+            Sobrenome é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+      
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput id="email" type="email" formControlName="email">
+          <mat-error *ngIf="formUsuario.get('email')?.invalid && formUsuario.get('email')?.touched">
+            Email é obrigatório e deve ser válido
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-divider></mat-divider>
+      <div *ngFor="let permissao of permissoesNome; let i = index">
+        {{permissao}}
+        <div>
+          <mat-checkbox [checked]="permissoesSelecionadas[4*i]" (change)="onPermissionChange($event, 4*i)">
+            <mat-icon aria-hidden="false" aria-label="Adicionar" fontIcon="add"></mat-icon>
+          </mat-checkbox>
+          <mat-checkbox [checked]="permissoesSelecionadas[4*i + 1]" (change)="onPermissionChange($event, 4*i + 1)">
+            <mat-icon aria-hidden="false" aria-label="Modificar" fontIcon="edit"></mat-icon>
+          </mat-checkbox>
+          <mat-checkbox [checked]="permissoesSelecionadas[4*i + 2]" (change)="onPermissionChange($event, 4*i + 2)">
+            <mat-icon aria-hidden="false" aria-label="Excluir" fontIcon="delete"></mat-icon>
+          </mat-checkbox>
+          <mat-checkbox [checked]="permissoesSelecionadas[4*i + 3]" (change)="onPermissionChange($event, 4*i + 3)">
+            <mat-icon aria-hidden="false" aria-label="Vizualizar" fontIcon="visibility"></mat-icon>
+          </mat-checkbox>
+        </div>
+      </div>
+  
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="formUsuario.invalid">Editar</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+</div>

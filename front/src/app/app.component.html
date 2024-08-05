@@ -1,0 +1,24 @@
+<mat-toolbar class="toolbar">
+  <div>
+    <span>HAPI</span>
+    <button mat-icon-button class="menu" aria-label="Menu" (click)="menu.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <button mat-icon-button class="user" aria-label="Usuário">
+      <mat-icon>perm_identity</mat-icon>
+      </button>
+    <button mat-icon-button class="settings" aria-label="Configurações">
+      <mat-icon>settings</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #menu class="sidenav" mode="side" opened>
+    <app-menu-lateral></app-menu-lateral>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

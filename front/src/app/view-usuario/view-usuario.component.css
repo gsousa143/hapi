@@ -1,0 +1,25 @@
+mat-card{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.card-conteiner {
+    display: flex;
+    justify-content: center;
+}
+
+.form-field > mat-form-field{
+    width: 100%;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+  
+mat-divider{
+    padding-top: 2rem;
+}
